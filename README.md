@@ -11,8 +11,8 @@
 |group_id|integer|null: false, foreign_key: true|
 
 ### Association
-- has_many :users
-- has_many :groups
+- belongs_to :user
+- belongs_to :group
 
 ## usersテーブル
 
@@ -24,19 +24,19 @@
 
 ### Association
 - has_many :messages
-- has_many :groups, through groups.users
-- has_many :groups.users
+- has_many :groups, through: :groups.users
+- has_many :groups_users
 
 ## groupsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|group_name|string|null: false, unique: true|
+|name|string|null: false, unique: true|
 
 ### Association
 - has_many :messages
-- has_many :users, through groups.users
-- has_many :groups.users
+- has_many :users, through: :groups_users
+- has_many :groups_users
 
 ## groups_usersテーブル
 
