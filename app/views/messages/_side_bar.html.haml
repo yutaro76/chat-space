@@ -6,21 +6,21 @@
         = current_user.name
 
       .top-items__icons
-        = link_to "#", class: "btn1" do
+        = link_to "/groups/new", class: "btn1" do
           = icon('far', 'edit')
           %span
         = link_to edit_user_path(current_user), class: "btn2" do
           = icon('fas', 'cog')
         
   .side-bar__group-list
-    
-    .group
+    - current_user.groups.each do |group|
+      .group
+        = link_to '#' do
+          .group__name
+          = group.name
 
-      .group__name
-        techcamp
-
-      .group__message
-        まだメッセージがありません
+          .group__message
+            まだメッセージがありません
     
     .group
 
