@@ -1,40 +1,28 @@
 .side-bar
+  
   .side-bar__user-name
+  
     .top-items
     
-      .top-items__name
+      %h3.top-items__name
         = current_user.name
 
-      .top-items__icons
-        = link_to "/groups/new", class: "btn1" do
-          = icon('far', 'edit')
-          %span
-        = link_to edit_user_path(current_user), class: "btn2" do
-          = icon('fas', 'cog')
+      %ul.top-items__icons
+        %li.btn1
+          = link_to "/groups/new" do
+            = icon('far', 'edit')
+        %li.btn1
+          = link_to edit_user_path(current_user) do
+            = icon('fas', 'cog')
         
   .side-bar__group-list
     - current_user.groups.each do |group|
       .group
-        = link_to '#' do
+        = link_to group_messages_path(group) do
           .group__name
-          = group.name
+            = group.name
 
           .group__message
-            まだメッセージがありません
+            = group.show_last_message
     
-    .group
-
-      .group__name
-        techcamp
-
-      .group__message
-        まだメッセージがありません
-    
-    .group
-
-      .group__name
-        techcamp
-
-      .group__message
-        まだメッセージがありません
   
