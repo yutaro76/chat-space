@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   def index
     return nil if params[:keyword] == ""
-    @users = User.where(['name LIKE ?',"%#{params[:keyword]}%"]).where.not(id: current_user.id).limit(10)
+    @users = User.where(['name LIKE ?', "%#{params[:keyword]}%"] ).where.not(id: current_user.id).limit(10)
     respond_to do |format|
       format.html
       format.json
@@ -13,8 +13,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    @group = Group.find(params[:id])
     if current_user.update(user_params)
-      redirect_to group_messages_path(@group)
+       redirect_to group_messages_path(@group)
     else
       render :edit
     end
