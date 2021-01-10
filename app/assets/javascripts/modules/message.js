@@ -1,5 +1,4 @@
 $(function(){
-
   function buildHTML(message){
     if ( message.image ) {
       let html =
@@ -50,7 +49,7 @@ $(function(){
       url: url,
       type: "POST",
       data: formData,
-      datatype: 'json',
+      dataType: 'json',
       processData: false,
       contentType: false
     })
@@ -61,34 +60,9 @@ $(function(){
       $('.message__field').animate({scrollTop: $('.message__field')[0].scrollHeight});
       $('.submit').prop("disabled", false);
     })
-    .fail(function(){
+    .fail(function() {
       alert("メッセージ送信に失敗しました");
       $('.submit').prop("disabled", false);
     });
   });
-
-  // let reloadMessages = function(){
-  //   let last_message_id = $('.chat-main__message-list:last').data("message-id")  || 0;
-  
-  //   $.ajax({
-  //     url: "api/messages",
-  //     type: 'get',
-  //     dataType: 'json',
-  //     data: {id: last_message_id}
-  //   })
-  //   .done(function(message){
-  //     if (reloadMessages.length !== 0){
-  //       let insertHTML = '';
-  //       $.each(messages, function(i, message){
-  //         insertHTML += buildHTML(message)
-  //       });
-  //       $('.message__field').append(insertHTML);
-  //       $('.message__field').animate({ scrollTop: $('.message__field')[0].scrollHeight});
-  //     }
-  //   })
-  //   .fail(function(){
-  //     alert('error');
-  //   });
-  // };
-  // setInterval(reloadMessages, 7000);
 });
